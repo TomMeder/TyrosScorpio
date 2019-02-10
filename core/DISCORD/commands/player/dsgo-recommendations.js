@@ -115,7 +115,7 @@ const command = async ( message ) => {
 	            //Report.dev( "BOT:stats:", result )
 	            //let stats = JSON.stringify(result, null, 4);
 	            var stats = JSON.parse(JSON.stringify(result));
-	            //Report.dev( "BOT:stats2:", stats )
+	            Report.dev( "BOT:stats2:", stats )
 	            
 	            let squads;
 	            
