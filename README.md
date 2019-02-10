@@ -58,3 +58,4 @@ Language is specified in your config api section. The swapi core will fetch data
 /localization
 ```
 
+
