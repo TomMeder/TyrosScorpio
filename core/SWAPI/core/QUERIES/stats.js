@@ -18,6 +18,7 @@ module.exports = async ( message ) => {
         if( message.allycode ) {
 
             SWAPI.report.dev("SWAPI: Stats: Fetching player:", message.allycode)
+            console.log("SWAPI: Stats: Fetching player:", message.allycode)
               
             let response = {}
 
