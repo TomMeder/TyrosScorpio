@@ -112,6 +112,7 @@ const command = async ( message ) => {
 	           
 	            const { result, warning, error } = await Bot.swapi.stats(player.allyCode,conversion2)
 	            Report.dev( "BOT:stats error?:", error )
+	            Report.dev( "BOT:stats warning?:", warning )
 	            //Report.dev( "BOT:stats:", result )
 	            //let stats = JSON.stringify(result, null, 4);
 	            var stats = JSON.parse(JSON.stringify(result));
