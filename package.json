@@ -4,6 +4,7 @@
   "description": "Discord bot framework reporting player/guild details for the Star Wars Galaxy of Heroes mobile game",
   "main": "bot.js",
   "scripts": {
+    "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shittybill",
