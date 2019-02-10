@@ -18,7 +18,6 @@ module.exports = async ( message ) => {
         if( message.allycode ) {
 
             console.log("SWAPI: Stats: Fetching player:", message.allycode)
-            console.log("SWAPI: Stats: Fetching player:", message.allycode)
               
             let response = {}
 
@@ -50,7 +49,7 @@ module.exports = async ( message ) => {
                 
             }
             
-/*            if( response.warning ) { 
+            if( response.warning ) { 
                 console.log("SWAPI: Fetched with warning:", response.warning)
                 process.send(JSON.stringify({
                     id:message.id,
@@ -79,7 +78,7 @@ module.exports = async ( message ) => {
                     }
                 }))
             }
-*/
+
             console.log("SWAPI: Fetched complete")
         }
 
