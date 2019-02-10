@@ -5,19 +5,19 @@ module.exports = async ( message ) => {
         const today = new Date()
         //const acIn = Object.assign([], message.allycode)
         
-        //SWAPI.report.dev("SWAPI: Stats: Querying players:", acIn.length)
+        //console.log("SWAPI: Stats: Querying players:", acIn.length)
 
         //One hour cooldown on players
 //        const unexpired = today.getTime() - (1*60*60000)
 
-//        SWAPI.report.dev("SWAPI: Unexpired is gt:", (new Date(unexpired)).toLocaleString())
+//        console.log("SWAPI: Unexpired is gt:", (new Date(unexpired)).toLocaleString())
         
       
 
  
         if( message.allycode ) {
 
-            SWAPI.report.dev("SWAPI: Stats: Fetching player:", message.allycode)
+            console.log("SWAPI: Stats: Fetching player:", message.allycode)
             console.log("SWAPI: Stats: Fetching player:", message.allycode)
               
             let response = {}
@@ -29,16 +29,16 @@ module.exports = async ( message ) => {
                 let flags = ['withModCalc','gameStyle'];
                 response = await SWAPI.api.client.calcStats(message.allycode,'',flags,1)
                 
-                //SWAPI.report.dev("SWAPI: Stats: Result:"+JSON.stringify(response, null, 4))
+                //console.log("SWAPI: Stats: Result:"+JSON.stringify(response, null, 4))
                 SWAPI.apiq--
             } catch(e) {
                 SWAPI.apiq--
-                SWAPI.report.dev("SWAPI: Stats: error:", e)
+                console.log("SWAPI: Stats: error:", e)
                 //response.error = e
             }
 
             if( response.result ) {
-            	SWAPI.report.dev("SWAPI: Stats: Result is here:")
+            	console.log("SWAPI: Stats: Result is here:")
                 process.send(JSON.stringify({
                     id:message.id,
                     data:{
@@ -51,7 +51,7 @@ module.exports = async ( message ) => {
             }
             
 /*            if( response.warning ) { 
-                SWAPI.report.dev("SWAPI: Fetched with warning:", response.warning)
+                console.log("SWAPI: Fetched with warning:", response.warning)
                 process.send(JSON.stringify({
                     id:message.id,
                     data:{
@@ -69,7 +69,7 @@ module.exports = async ( message ) => {
                 response.error.error = response.error.message
                 response.error.description = 'Sorry, I am currently disconnected from API...please try again later'
                     
-                SWAPI.report.dev("SWAPI: Fetched with error:", response.error)
+                console.log("SWAPI: Fetched with error:", response.error)
                 process.send(JSON.stringify({
                     id:message.id,
                     data:{
@@ -80,7 +80,7 @@ module.exports = async ( message ) => {
                 }))
             }
 */
-            SWAPI.report.dev("SWAPI: Fetched complete")
+            console.log("SWAPI: Fetched complete")
         }
 
         process.send(JSON.stringify({id:message.id}))
