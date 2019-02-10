@@ -19,9 +19,14 @@ global.OUTPUT = require('./localization')
 //Global logging
 global.Report = {
     log   : console.log,
-    info  : env === 'production' ? console.log : () => {},
-    dev   : env !== 'production' ? console.log : () => {},
-    error : env !== 'production' ? console.error : () => {},
+	info   : console.log,
+	dev   : console.log,
+	error   : console.error
+    //info  : env === 'production' ? console.log : () => {},
+    //dev   : env !== 'production' ? console.log : () => {},
+    //error : env !== 'production' ? console.error : () => {},
+	
+	
 }
 
 
