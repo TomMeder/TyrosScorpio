@@ -1,3 +1,16 @@
+if (process.env.DATABASE_SERVICE_NAME) {
+    var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase();
+    mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'];
+    mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'];
+    mongoDatabase = process.env[mongoServiceName + '_DATABASE'];
+    mongoPassword = process.env[mongoServiceName + '_PASSWORD'];
+    mongoUser = process.env[mongoServiceName + '_USER'];
+	
+	
+	console.log('Connected to MongoDB at: %s', mongoDatabase);
+}
+
+
 module.exports = {
 	
     //SWAPI config
@@ -11,8 +24,8 @@ module.exports = {
 	        "db":"swapi"
       	},
       	"api":{
-	        "username":"YOUR_API_USER",
-	        "password":"YOUR_API_PASS",
+	        "username":"TyroVest",
+	        "password":"TVSWgoh1977",
         	"language":"eng_us"
       	}
     },
@@ -20,9 +33,9 @@ module.exports = {
 	//DISCORD config
 	"discord":{
         "debug":true,
-	    "token":"YOUR_BOT_TOKEN",
-	    "prefix":"$",
-        "master":[ "YOUR_DISCORD_ID" ],	
+	    "token":"NTIxMDg3MzY5NzY0NjY3NDAy.Du3VPA.e9PjtY46mnqAENsqFKcErmeuJ_I",
+	    "prefix":"!",
+        "master":[ "299274718291427338" ],	
 	    "blacklist":"/config/data/blacklist.json",
 	    "premium":"/config/data/premium.json",
 	    "commands":{
@@ -48,6 +61,10 @@ module.exports = {
 	            "pca":"Player-character arena",
 	            "psa":"Player-ship arena",
 	            "z":"Zeta recommendations",
+				 "t":"Toms recommendations",
+	            "dsgo":"DSGO recommendations",
+	            "counter":"Counter Teams",
+	            "scm":"Check Ship Crew Mods"
 	        },
 	        "guild_commands":{
 	            "g":"Guild details",
