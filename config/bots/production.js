@@ -17,11 +17,11 @@ module.exports = {
     //SWAPI config
 	"swapi":{
       	"mongo":{
-	        "user":"admin",
-	        "pass":mongoAdminPassword,
+	        "user":mongoUser,
+	        "pass":mongoPassword,
 	        "host":mongoHost,
 	        "port":mongoPort,
-	        "auth":"?authSource=admin",
+	        "auth":"?authSource="+mongoDatabase,
 	        "db":mongoDatabase
       	},
       	"api":{
