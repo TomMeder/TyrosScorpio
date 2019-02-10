@@ -4,6 +4,7 @@ if (process.env.DATABASE_SERVICE_NAME) {
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'];
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'];
     mongoPassword = process.env[mongoServiceName + '_PASSWORD'];
+	mongoAdminPassword = process.env[mongoServiceName + '_ADMIN_PASSWORD'];
     mongoUser = process.env[mongoServiceName + '_USER'];
 	
 	
@@ -20,7 +21,7 @@ module.exports = {
 	        "pass":mongoPassword,
 	        "host":mongoHost,
 	        "port":mongoPort,
-	        "auth":"?authSource=YOUR_ADMIN_DB",
+	        "auth":"?authSource=admin",
 	        "db":mongoDatabase
       	},
       	"api":{
