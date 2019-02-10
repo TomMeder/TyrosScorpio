@@ -17,8 +17,8 @@ module.exports = {
     //SWAPI config
 	"swapi":{
       	"mongo":{
-	        "user":mongoUser,
-	        "pass":mongoPassword,
+	        "user":"admin",
+	        "pass":mongoAdminPassword,
 	        "host":mongoHost,
 	        "port":mongoPort,
 	        "auth":"?authSource=admin",
