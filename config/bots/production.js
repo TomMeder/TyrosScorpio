@@ -16,12 +16,12 @@ module.exports = {
     //SWAPI config
 	"swapi":{
       	"mongo":{
-	        "user":"YOUR_DB_USER",
-	        "pass":"YOUR_DB_PASS",
-	        "host":"YOUR_DB_HOST",
-	        "port":27017,
+	        "user":mongoUser,
+	        "pass":mongoPassword,
+	        "host":mongoHost,
+	        "port":mongoPort,
 	        "auth":"?authSource=YOUR_ADMIN_DB",
-	        "db":"swapi"
+	        "db":mongoDatabase
       	},
       	"api":{
 	        "username":"TyroVest",
