@@ -17,10 +17,10 @@ module.exports = {
     //Help commands
     help    : commands.help    ? require('./help/help.js')            : null,
     invite  : commands.invite  ? require('./help/invite.js')          : null,
-    swgoh   : commands.swgoh   ? require('./help/swgoh-tools.js')     : null,
-    discord : commands.discord ? require('./help/discord-servers.js') : null,
-    support : commands.support ? require('./help/support-me.js')      : null,
-    raw     : commands.raw     ? require('./help/raw.js')             : null,
+    //swgoh   : commands.swgoh   ? require('./help/swgoh-tools.js')     : null,
+    //discord : commands.discord ? require('./help/discord-servers.js') : null,
+    //support : commands.support ? require('./help/support-me.js')      : null,
+    //raw     : commands.raw     ? require('./help/raw.js')             : null,
 
     //Registration
     add    : commands.add    ? require('./registration/registration-add.js') : null,
@@ -64,10 +64,10 @@ module.exports = {
     zetas   : commands.events  ? require('./demo/demo-zetas.js')   : null,
 
 
-    blacklist : commands.blacklist ? require('./utilities/blacklist.js') : null,
-    premium : commands.premium ? require('./utilities/premium.js') : null,
-    vsu : commands.vsu ? require('./premium/guild-vs-units.js') : null,
-    vss : commands.vss ? require('./premium/guild-vs-squads.js') : null,
+    //blacklist : commands.blacklist ? require('./utilities/blacklist.js') : null,
+    //premium : commands.premium ? require('./utilities/premium.js') : null,
+    //vsu : commands.vsu ? require('./premium/guild-vs-units.js') : null,
+    //vss : commands.vss ? require('./premium/guild-vs-squads.js') : null,
 
 
 }

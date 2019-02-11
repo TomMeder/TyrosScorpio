@@ -29,19 +29,12 @@ module.exports = {
 	    "commands":{
 	        "help_commands":{
 	            "help":"This help menu",
-	            "invite": "Invite this bot",
-                "swgoh": "SWGoH bots and tools",
-                "discord": "SWGoH related discords",
-                "support": "Support me on patreon",
+	            "invite": "Invite this bot"
 	        },
 	        "utilities":{
-	            "raw":"Data for your tools",
 	            "add":"Register your allycode",
 	            "rem":"Unregister your allycode",
-	            "whois":"Lookup by mention or allycode",
-                "translate": "Google translate",
-                "premium":"Premium Users",
-                "blacklist":"Blacklsit Users"
+	            "whois":"Lookup by mention or allycode"
             },
 	        "player_commands":{
 	            "p":"Player details",
@@ -73,7 +66,7 @@ module.exports = {
             },
 	        "hidden":{
 	            "status":false,
-	            "premium":true,
+	            "premium":false,
 	            "blacklist":false,
 	        }
 	    }

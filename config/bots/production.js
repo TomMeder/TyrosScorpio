@@ -52,17 +52,12 @@ module.exports = {
 	    "commands":{
 	        "help_commands":{
 	            "help":"This help menu",
-	            "invite": "Invite this bot",
-                "swgoh": "SWGoH bots and tools",
-                "discord": "SWGoH related discords",
-                "support": "Support me on patreon",
+	            "invite": "Invite this bot"
 	        },
 	        "utilities":{
-	            "raw":"Data for your tools",
 	            "add":"Register your allycode",
 	            "rem":"Unregister your allycode",
-	            "whois":"Lookup by mention or allycode",
-                "translate": "Google translate"
+	            "whois":"Lookup by mention or allycode"
             },
 	        "player_commands":{
 	            "p":"Player details",
@@ -86,10 +81,6 @@ module.exports = {
 	            "gvs":"Guild-vs-guild summary",
 	            "gvu":"Guild-vs-guild units of interest",
 	            "tb":"List guild members by unit",
-            },
-            "premium_commands":{
-                "vsu":"G-vs-G Units of interest",
-                "vss":"G-vs-G Squads of interest"
             },
 	        "hidden":{
 	            "status":true,
