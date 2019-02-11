@@ -10,6 +10,15 @@ if (process.env.DATABASE_SERVICE_NAME) {
 	
 	console.log('Connected to MongoDB at: %s', mongoDatabase);
 }
+else{
+	mongoServiceName = "";
+    mongoHost = "";
+    mongoPort = "";
+    mongoDatabase = "";
+    mongoPassword = "";
+	mongoAdminPassword = "";
+    mongoUser = "";
+}
 
 
 module.exports = {
@@ -38,6 +47,7 @@ module.exports = {
 	    "prefix":"!",
         "master":[ "299274718291427338" ],	
 	    "blacklist":"/config/data/blacklist.json",
+	    "whitelist":"/config/data/whitelist.json",
 	    "premium":"/config/data/premium.json",
 	    "commands":{
 	        "help_commands":{

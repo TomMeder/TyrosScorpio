@@ -24,6 +24,7 @@ module.exports = {
 	    "prefix":"$",
         "master":[ "YOUR_DISCORD_ID" ],	
 	    "blacklist":"/config/data/blacklist.json",
+	    "whitelist":"/config/data/whitelist.json",
 	    "premium":"/config/data/premium.json",
 	    "commands":{
 	        "help_commands":{

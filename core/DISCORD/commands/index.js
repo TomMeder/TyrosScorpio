@@ -53,7 +53,6 @@ module.exports = {
 
     //Utilities
     status    : commands.status    ? require('./utilities/bot-status.js')       : null,
-    translate : commands.translate ? require('./utilities/google-translate.js') : null,
     
 
     //SWAPI DEMO

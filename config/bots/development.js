@@ -20,10 +20,11 @@ module.exports = {
 	//DISCORD config
 	"discord":{
         "debug":true,
-	    "token":"NTIxMDg3MzY5NzY0NjY3NDAy.Du3VPA.e9PjtY46mnqAENsqFKcErmeuJ_I",
-	    "prefix":"!",
+	    "token":"NTQ0MjM1NzU0NTk1OTQyNDAx.D0IKtQ.Qon87d22-DK0wy2t85fcUmIj7yU",
+	    "prefix":"-",
         "master":[ "299274718291427338" ],	
 	    "blacklist":"/config/data/blacklist.json",
+	    "whitelist":"/config/data/whitelist.json",
 	    "premium":"/config/data/premium.json",
 	    "commands":{
 	        "help_commands":{

@@ -5,6 +5,11 @@ module.exports = async ( message ) => {
         Report.log(message.content)
         
     }
+    if( !Bot.whitelist.includes(message.author.id) ) {
+        Report.log("Not whitelisted User:", message.author.id, message.author.username);
+        Report.log(message.content);
+        
+    }
     
 	/** Ignore conditions **/
 	if( message.author.bot ) { return }
@@ -32,9 +37,24 @@ module.exports = async ( message ) => {
     Report.dev( "BOT: Command handler:", message.command, !!Bot.discord.commands[message.command] )
 
     let help = message.parts.slice(2).includes('help')
-    if( !!Bot.discord.commands[message.command] ) {
-        Report.info("CMD: Routing to "+message.prefix+message.command)
-        return help ? await Bot.discord.commands[message.command].help( message ) : await Bot.discord.commands[message.command].command( message )
+    
+     if( Bot.whitelist.includes(message.author.id) ) {
+        //Report.log("Whitelisted User:", message.author.id, message.author.username);
+        //Report.log(message.content);
+        if( !!Bot.discord.commands[message.command] ) {
+            Report.info("CMD: Routing to "+message.prefix+message.command)
+            return help ? await Bot.discord.commands[message.command].help( message ) : await Bot.discord.commands[message.command].command( message )
+        }
+        
     }
+     else{
+    	 Report.log("Not whitelisted User:", message.author.id, message.author.username);
+         Report.log(message.content);
+         message.react("💩");
+          
+    	 return message;
+     }
+    
+   
     
 }

@@ -4,6 +4,7 @@ module.exports = async ( commands ) => {
     Report.dev('BOT: Loading config data')
     Bot.premium   = Bot.config.discord.premium.length   ? require(process.cwd()+Bot.config.discord.premium)   : []
     Bot.blacklist = Bot.config.discord.blacklist.length ? require(process.cwd()+Bot.config.discord.blacklist) : []
+    Bot.whitelist = Bot.config.discord.whitelist.length ? require(process.cwd()+Bot.config.discord.whitelist) : []
 
     //Init swapi connection
     Report.dev('BOT: Loading swapi')
