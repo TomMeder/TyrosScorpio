@@ -132,7 +132,7 @@ const command = async ( message ) => {
 	            let label_critdamage = "**Critical Damage**: ";
 	            
 	            let squadknown = true;
-	            let known_squads = "BH, NS, FO, Scoundrels, Revan, Traya, CLS, Rex, Rebels, Zaul, Imps ";
+	            let known_squads = "BH, NS, FO, Scoundrels, Revan, Traya, CLS, Rex, Rebels, Zaul, Imps -- oder speed, tenacity, potency, armor, health, damage, specialdamage, critdamage, critchance ";
 	            
 	            
 	            squadName = squadName.toLocaleString().toLowerCase().split(',');
@@ -1011,6 +1011,337 @@ const command = async ( message ) => {
 	            	field.value += display_line();
         			embed.fields.push( field );
 
+	            	
+	            }
+        		else if(squadName.includes('potency')){
+	            	
+
+	            	let charname="BASTILASHANDARK";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="VADER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),75)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="GRANDMOFFTARKIN";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),90)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="QIRA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="EMPERORPALPATINE";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+	            	
+	            }
+        		else if(squadName.includes('tenacity')){
+	            	
+
+	            	let charname="BOSSK";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),100)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="MAGMATROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="ZAALBAR";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="DARTHTRAYA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),100)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			
+	            	
+	            }
+        		else if(squadName.includes('armor')){
+	            	
+
+	            	let charname="KYLORENUNMASKED";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="JOLEEBINDO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="GENERALKENOBI";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+	            	
+	            }
+        		else if(squadName.includes('health')){
+	            	
+
+	            	let charname="KYLORENUNMASKED";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,50000)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="BARRISSOFFEE";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,48000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="ENFYSNEST";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+        			charname="DAKA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,38000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+        			charname="YOUNGCHEWBACCA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+        			charname="JOLEEBINDO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+        			charname="BAZEMALBUS";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			charname="DARTHTRAYA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+        			charname="R2D2_LEGENDARY";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+
+	            }
+        		else if(squadName.includes('damage')){
+	            	
+
+	            	let charname="CHEWBACCALEGENDARY";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],4500)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="WAMPA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3500)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="ASAJVENTRESS";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="REYJEDITRAINING";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="HANSOLO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3200)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="MISSIONVAO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3500)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        		
+	            	
+	            }
+        		else if(squadName.includes('specialdamage')){
+	            	
+
+	            	let charname="JEDIKNIGHTREVAN";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],5000)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="MOTHERTALZIN";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],5500)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			
+	            	
+	            }
+        		else if(squadName.includes('critdamage')){
+	            	
+
+	            	let charname="ASAJVENTRESS";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="WAMPA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+	            	charname="SNOWTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+	            	charname="REYJEDITRAINING";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+	            	charname="HANSOLO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+	            	charname="MISSIONVAO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			
+	            	
+
+	            	
+	            }
+        		else if(squadName.includes('critchance')){
+	            	
+
+	            	let charname="DENGAR";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),50)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="R2D2_LEGENDARY";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),45)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="BB8";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),45)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="SNOWTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),60)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="HANSOLO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),65)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
 	            	
 	            }
             	else{
