@@ -81,6 +81,7 @@ module.exports = {
 	            "gvs":"Guild-vs-guild summary",
 	            "gvu":"Guild-vs-guild units of interest",
 	            "tb":"List guild members by unit",
+	            "dsgozeta":"DSGO recommendations for zetas",
             },
 	        "hidden":{
 	            "status":true,

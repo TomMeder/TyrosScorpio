@@ -48,6 +48,7 @@ module.exports = {
     gvs : commands.gvs ? require('./guild/guild-vs.js') : null,
     gvu : commands.gvu ? require('./guild/guild-vs-coi.js') : null,
     tb  : commands.tb  ? require('./guild/guild-info-tb.js') : null,
+    dsgozeta  : commands.dsgozeta  ? require('./guild/guild-dsgozetas.js') : null,
     
 
 

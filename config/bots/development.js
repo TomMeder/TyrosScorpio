@@ -58,7 +58,8 @@ module.exports = {
 	            "ggp":"Guild details by GP",
 	            "gvs":"Guild-vs-guild summary",
 	            "gvu":"Guild-vs-guild units of interest",
-	            "tb":"List guild members by unit"
+	            "tb":"List guild members by unit",
+	            "dsgozeta":"DSGO recommendations for zetas",
             },
             "premium_commands":{
                 "vsu":"G-vs-G Units of interest",
