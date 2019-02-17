@@ -17,6 +17,15 @@
         }
     },
     
+     "dsgozetaHelp":{
+        "title":"Zeta Vorgaben Details",
+        "description":"Lieferte eine Uebersicht wer die Zeta Vorgaben noch nicht erfuellt hat\n",
+        "example":{
+            "name":"Example",
+            "value":"```\n%s @mention\n%s 123456789\n%s list```\n"
+        }
+    },
+    
     "charHelp":{
         "title":"Guild-wide character details",
         "description":"Provides a character-report for specified players and characters\n",

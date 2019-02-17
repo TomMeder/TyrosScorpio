@@ -3,14 +3,15 @@ const STRING = OUTPUT["guild-info"]
 
 const help = async ( message ) => {
 	const embed = {
-        title : STRING.zetaHelp.title,
-        description : STRING.zetaHelp.description,
+        title : STRING.dsgozetaHelp.title,
+        description : STRING.dsgozetaHelp.description,
         color: 0x2A6EBB,
         timestamp: new Date(),
         fields:[{
-            name:STRING.zetaHelp.example.name,
+            name:STRING.dsgozetaHelp.example.name,
             value:util.format( 
-                STRING.zetaHelp.example.value,
+                STRING.dsgozetaHelp.example.value,
+                message.prefix+message.command,
                 message.prefix+message.command,
                 message.prefix+message.command
             )
@@ -26,6 +27,50 @@ const command = async ( message ) => {
     
     try {
 
+    	let isList=false;
+    	let discord = message.parts.slice(2).filter(i => i.match(/[a-zA-Z]/))
+    	 discord = discord.map( d => {
+        if( d === 'list' ){ isList=true; return 'list';}
+        else{ isList=false; return ''}
+    	 }).filter(d => d)
+    	 
+    	
+    	
+    	if(isList){
+    		Report.dev( "list mode:")
+    		const embed = {
+                    title : "DeathStarGermanOrder",
+                    description : "**Diese Zetas sind Vorgabe**",
+                    color: 0x21CF47,
+                    footer: {
+                      text: STRING.command.updated
+                    },
+                    timestamp: new Date(),
+                    fields:[]
+            }
+			let fieldline="";
+    		coi.forEach(coiDetail => {
+                fieldline += getText(coiDetail)+"\n";
+        		
+        	})    
+		
+		
+            embed.description += "\n`------------------------------`\n"
+            let field = {
+                name: "Name",
+                value: fieldline,
+                inline: true
+            }
+            embed.fields.push(field)
+            await Bot.discord.util.reply.swapi(message, embed, {warning:'', error:''}, MESSAGE)                
+            MESSAGE = null
+            return;
+                	
+    	}
+    	
+    	
+    	
+    	
         //Parse allycodes
         let allycodes = await Bot.discord.util.allycodes( message )
         if( !allycodes.length ) {
