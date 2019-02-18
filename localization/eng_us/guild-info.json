@@ -26,6 +26,15 @@
         }
     },
     
+      "speedModsHelp":{
+        "title":"Speedmods Details",
+        "description":"Lieferte eine Uebersicht wer wieviele +20 Speedmods hat\n",
+        "example":{
+            "name":"Example",
+            "value":"```\n%s @mention\n%s 123456789```\n"
+        }
+    },
+    
     "charHelp":{
         "title":"Guild-wide character details",
         "description":"Provides a character-report for specified players and characters\n",

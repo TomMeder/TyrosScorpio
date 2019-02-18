@@ -37,7 +37,6 @@ const command = async ( message ) => {
     	
     	
     	if(isList){
-    		Report.dev( "list mode:")
     		const embed = {
                     title : "DeathStarGermanOrder",
                     description : "**Diese Zetas sind Vorgabe**",
@@ -128,15 +127,11 @@ const command = async ( message ) => {
                 	
                 	let fieldline="";
                 	
-                	Report.dev( "BOT:player allyCode:", player.allyCode )
                     let zetas = player.characters.reduce((acc,a) => {
                         acc.push({name:a.nameKey,zetas:a.skills.filter(s => s.isZeta && s.tier === 8)})
                         return acc
                     },[]).filter(z => z.zetas.length > 0)
                 
-                    
-                	
-                	
                 	coi.forEach(coiDetail => {
                 		let hascoizeta=false;
                 		zetas.forEach( z => {
@@ -159,45 +154,8 @@ const command = async ( message ) => {
                             }
                             embed.fields.push(field)  
                 	}
-                    
-                    
-                    
-                    
-                    
-                    
                 })
-
-               /* let zarr = Object.keys(gzetas).reduce((acc,z) => {
-                    acc.push({name:z,num:gzetas[z]})
-                    return acc
-                },[])
-                
-                let total = zarr.reduce((acc,z) => {
-                    return acc + z.num
-                },0)
-
-                Report.dev( "BOT:playerzetas:", playerzetas )
-                
-                
-	          
-
-                zarr.sort((a,b) => b.num - a.num)
-                
-                let i = 0
-                while( zarr.length ) {
-                    let group = zarr.splice(0, 20)
-                    let field = {
-                        name: ((i*20)+1)+"-"+((i*20)+group.length),
-                        value: group.reduce((str,z) => {
-                            return str + z.num + " x `" + z.name +"`\n"
-                        },"") + "`------------------------------`\n",
-                        inline: true
-                    }
-                    ++i
-                    embed.fields.push(field)  
-
-                }
-                 */    
+  
                  Report.dev( "BOT:fertig:")
                 
                 await Bot.discord.util.reply.swapi(message, embed, {warning:guilds.warning, error:guilds.error}, MESSAGE)                
