@@ -74,6 +74,7 @@
     "command":{
         "title":"**Guild details - %s**",
         "zetaTitle":"**Guild-zeta details - %s**",
+        "speedMods":"**Mods details - %s**",
         "charTitle":"**Guild-character details - %s**",
         "shipTitle":"**Guild-ship details - %s**",
         "unitsTitle":"**Units of interest**\n",

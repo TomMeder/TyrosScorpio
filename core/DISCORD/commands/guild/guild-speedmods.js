@@ -90,7 +90,7 @@ const command = async ( message ) => {
                     }
                 })
                   const embed = {
-                    title : util.format(STRING.command.zetaTitle, guild.name),
+                    title : util.format(STRING.command.speedMods, guild.name),
                     description : "",
                     color: 0x21CF47,
                     footer: {

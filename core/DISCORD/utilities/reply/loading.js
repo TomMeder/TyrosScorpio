@@ -4,7 +4,7 @@ module.exports = async ( message, options, MESSAGE ) => {
         description: "please wait...\n",
         color: 0xAAAAAA,
         footer: { text: "Searching..." },
-        image: { url:"https://media.discordapp.net/attachments/416390341533368321/502658773920514049/bb8s.gif" },
+        image: { url:"https://cdn.discordapp.com/attachments/529308301616349194/547181516099289128/4jeBvb8.gif" },
         timestamp: new Date()
     }, options || {})
     
