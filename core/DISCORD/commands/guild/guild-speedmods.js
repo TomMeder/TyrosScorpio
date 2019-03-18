@@ -181,11 +181,12 @@ const command = async ( message ) => {
                         let result_speedmods ="["; 
                         	
                         //let firstHalf = players.result.splice(0,Math.ceil(players.result.length / 2))
+                	//acc.push({charname:a.nameKey,mods:a.mods.filter(s => s.slot == 1 || s.slot > 2)})
                         
                         players.result.forEach(async player => {
                         	 let speedmods_count=0;
                         	 let allmods = player.characters.reduce((acc,a) => {
-                                 acc.push({charname:a.nameKey,mods:a.mods.filter(s => s.slot == 1 || s.slot > 2)})
+                                 acc.push({charname:a.nameKey,mods:a.mods.filter(s => s.slot > 0  || s.slot < 7)})
                                  return acc
                              },[]).filter(z => z.mods.length > 0)
                              allmods.forEach( char => {

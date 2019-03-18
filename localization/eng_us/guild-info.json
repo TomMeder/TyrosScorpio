@@ -28,10 +28,10 @@
     
       "speedModsHelp":{
         "title":"Speedmods Details",
-        "description":"Lieferte eine Uebersicht wer wieviele +20 Speedmods hat\n",
+        "description":"provides an overview about the mod counts\n",
         "example":{
             "name":"Example",
-            "value":"```\n%s @mention\n%s 123456789```\n"
+            "value":"```\n%s @mention\n%s 123456789\n-speedmods 123456789 20\n-speedmods 123456789 6e```\n"
         }
     },
     

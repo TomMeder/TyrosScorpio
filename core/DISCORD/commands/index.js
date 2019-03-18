@@ -36,7 +36,7 @@ module.exports = {
     psa : commands.psa ? require('./player/player-arena-ships.js') : null,
     z   : commands.z   ? require('./player/zeta-recommendations.js') : null,
     t   : commands.t   ? require('./player/toms-recommendations.js') : null,
-    dsgo: commands.dsgo   ? require('./player/dsgo-recommendations.js') : null,
+    ti	: commands.ti   ? require('./player/ti-recommendations.js') : null,
     counter: commands.counter   ? require('./player/counter.js') : null,
     scm: commands.scm   ? require('./player/shipcrewmods.js') : null,
 

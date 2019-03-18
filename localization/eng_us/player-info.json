@@ -7,12 +7,12 @@
             "value":"```\n%s @mention\n%s 123456789```\n"
         }
     },
-     "dsgohelp":{
-        "title":"DSGO ",
+     "tihelp":{
+        "title":"Team Instinct ",
         "description":"Provides a player-report for specified player for some squads\n",
         "example":{
             "name":"Example",
-            "value":"```\n%s 123456789 bh\n%s 123456789 ns```\n"
+            "value":"```\n%s 123456789 bh\n%s 123456789 ns\n-ti 123456789 Imps\n-ti 123456789 speed\n-ti 123456789 armor\ntenacity, potency, health, damage, specialdamage, critdamage, critchance, protection```\n"
         }
     },
     "shipcrewmodshelp":{

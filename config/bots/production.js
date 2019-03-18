@@ -68,7 +68,7 @@ module.exports = {
 	            "psa":"Player-ship arena",
 	            "z":"Zeta recommendations",
 				 "t":"Toms recommendations",
-	            "dsgo":"DSGO recommendations",
+	            "ti":"Team Instinct recommendations",
 	            "counter":"Counter Teams",
 	            "scm":"Check Ship Crew Mods"
 	        },

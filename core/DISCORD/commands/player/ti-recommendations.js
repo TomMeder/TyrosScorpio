@@ -3,14 +3,14 @@ const STRING = OUTPUT["player-info"]
 
 const help = async ( message ) => {
 	const embed = {
-        title : STRING.dsgohelp.title,
-        description : STRING.dsgohelp.description,
+        title : STRING.tihelp.title,
+        description : STRING.tihelp.description,
         color: 0x2A6EBB,
         timestamp: new Date(),
         fields:[{
-            name:STRING.dsgohelp.example.name,
+            name:STRING.tihelp.example.name,
             value:util.format( 
-                STRING.dsgohelp.example.value,
+                STRING.tihelp.example.value,
                 message.prefix+message.command,
                 message.prefix+message.command
             )
@@ -132,7 +132,7 @@ const command = async ( message ) => {
 	            let label_critdamage = "**Critical Damage**: ";
 	            
 	            let squadknown = true;
-	            let known_squads = "BH, NS, FO, Scoundrels, Revan, Traya, CLS, Rex, Rebels, Zaul, Imps -- oder speed, tenacity, potency, armor, health, damage, specialdamage, critdamage, critchance ";
+	            let known_squads = "BH, NS, FO, Scoundrels, Revan, Traya, CLS, Rex, Rebels, Zaul, Imps -- oder speed, tenacity, potency, armor, health, damage, specialdamage, critdamage, critchance, protection,critavoidance ";
 	            
 	            
 	            squadName = squadName.toLocaleString().toLowerCase().split(',');
@@ -145,64 +145,47 @@ const command = async ( message ) => {
 	            	let charname="BOSSK";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,280)+"\n";
+                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,305)+"\n";
         			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),100)+"\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,50000)+"\n";
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),40)+"\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
+	            	
+        			charname="ZAMWESELL";
+        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,280)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),60)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+	            	
+	            	charname="JANGOFETT";
+        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,279)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
+	            	field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
 
 	            	charname="BOBAFETT";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,230)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,280)+"\n";
+	            	field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),50)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
         			charname="DENGAR";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_physicaldamage+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),50)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
+	            	field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),50)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
-        			
-        			
-        			charname="EMBO";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			charname="SHORETROOPER";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,50000)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			
-        			charname="B2SUPERBATTLEDROID";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,50000)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-	            	
 	            	
 	            }
 	            else if(squadName.includes('fo')||squadName.includes('kru')){
@@ -229,7 +212,7 @@ const command = async ( message ) => {
         			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
         			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
         			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
@@ -423,56 +406,47 @@ const command = async ( message ) => {
 	            	let charname="JEDIKNIGHTREVAN";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,300)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
+                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,310)+"\n";
         			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],5000)+"\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
 
-	            	charname="GENERALKENOBI";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,235)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-
-        			charname="JOLEEBINDO";
+	            	charname="JOLEEBINDO";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,230)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,240)+"\n";
         			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="GRANDMASTERYODA";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,275)+"\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],7000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
-	            	
         			
-        			charname="HERMITYODA";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,270)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+	            	charname="GENERALKENOBI";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,245)+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,65000)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
-	            	
+        			
+        			charname="EZRABRIDGERS3";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,240)+"\n";
+	            	field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3800)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
 	            }
 	            else if(squadName.includes('traya')){
 	            	
@@ -480,41 +454,39 @@ const command = async ( message ) => {
 	            	let charname="DARTHTRAYA";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),102)+"\n";
+                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,210)+"\n";
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
         			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
+        			
+        			let modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+        			}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
 
 	            	charname="DARTHSION";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,290)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
         			charname="DARTHNIHILUS";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,240)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="BASTILASHANDARK";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,240)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
@@ -522,35 +494,9 @@ const command = async ( message ) => {
         			charname="GRANDADMIRALTHRAWN";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,289)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
-	            	
-        			
-        			charname="SITHTROOPER";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			charname="EMPERORPALPATINE";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
 	            	
 	            }
 	            else if(squadName.includes('cls')||squadName.includes('luke')){
@@ -560,17 +506,14 @@ const command = async ( message ) => {
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
                     field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
 
 	            	charname="HANSOLO";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-	            	field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3200)+"\n";
+	            	field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3500)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),20)+"\n";
 	            	field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
 	            	field.value += label_physicaldamage+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),65)+"\n";
 	            	field.value += display_line();
@@ -579,51 +522,17 @@ const command = async ( message ) => {
         			charname="CHEWBACCALEGENDARY";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
         			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],4500)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
-        			charname="CHIRRUTIMWE";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			
-        			charname="BAZEMALBUS";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
-        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-	            	
-        			
-        			charname="R2D2_LEGENDARY";
-        			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
-        			field.value += label_physicaldamage+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),45)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
         			
         			charname="OLDBENKENOBI";
         			displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon(displayed_toon[0],unitIndex,charname,"*")
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")\n";
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%)\n";
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")\n";
-        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,230)+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),60)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
@@ -801,7 +710,7 @@ const command = async ( message ) => {
 	            	charname="SNOWTROOPER";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(speed_starck*0.6,1,2))+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(((speed_starck+20)*0.6)-20,1,2))+"\n";
 	            	field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
 	            	field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),60)+"\n";
 	            	field.value += display_line();
@@ -810,21 +719,22 @@ const command = async ( message ) => {
         			charname="RANGETROOPER";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(speed_starck*0.8,1,2))+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(((speed_starck+20)*0.8)-20,1,2))+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
-        			charname="STORMTROOPER";
+        			charname="SHORETROOPER";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(speed_starck*0.7,1,2))+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(((speed_starck+20)*0.7)-20,1,2))+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="VEERS";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(speed_starck*0.7,1,2))+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,displayNumber(((speed_starck+20)*0.7)-20,1,2))+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 	            	
@@ -836,7 +746,7 @@ const command = async ( message ) => {
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
         			let speed_starck=stats[0].stats[charname].stats.final.Speed;
-                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,270)+"\n";
+                    field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,240)+"\n";
                     field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
                     field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
 	            	field.value += display_line();
@@ -845,33 +755,51 @@ const command = async ( message ) => {
 	            	charname="BB8";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,270)+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,276)+"\n";
+	            	field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),40)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="C3POLEGENDARY";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,255)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
         			charname="R2D2_LEGENDARY";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,270)+"\n";
-	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,274)+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,30000)+"\n";
+	            	field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),40)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
-        			charname="REY";
+        			charname="T3_M4";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,250)+"\n";
-	            	field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3200)+"\n";
+        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,220)+"\n";
+	            	field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),60)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="CHOPPERS3";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,200)+"\n";
-	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,50000)+"\n";
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,30000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
+        			
+        			charname="SCARIFREBEL";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+	            	field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,60000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			
 	            	
 	            }
         		else if(squadName.includes('speed')){
@@ -1019,35 +947,57 @@ const command = async ( message ) => {
 	            	let charname="BASTILASHANDARK";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-                    field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
+                    field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
 
 	            	charname="VADER";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),75)+"\n";
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),85)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="GRANDMOFFTARKIN";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),90)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			charname="QIRA";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),50)+"\n";
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="EMPERORPALPATINE";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),100)+"\n";
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),85)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="DAKA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),90)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="DENGAR";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),70)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			
+        			charname="HANSOLO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),20)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="B2SUPERBATTLEDROID";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_potency+(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Potency,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Potency,100,2),90)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 	            	
@@ -1072,14 +1022,21 @@ const command = async ( message ) => {
         			charname="ZAALBAR";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),140)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="DARTHTRAYA";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),100)+"\n";
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="CANDEROUSORDO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
@@ -1092,21 +1049,75 @@ const command = async ( message ) => {
 	            	let charname="KYLORENUNMASKED";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-                    field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+                    field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
 
-	            	charname="JOLEEBINDO";
+	            	charname="ZAALBAR";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+	            	
+        			charname="GENERALKENOBI";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="L3_37";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),55)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="JOLEEBINDO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+	            	
+	            }
+        		else if(squadName.includes('protection')){
+	            	
+
+	            	let charname="BAZEMALBUS";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,50000)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="SITHTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,60000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="GENERALKENOBI";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2),50)+"\n";
+        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,65000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="ZAALBAR";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,65000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="L3_37";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_protection+stats[0].stats[charname].stats.final.Protection+" (+"+stats[0].stats[charname].stats.mods.Protection+")"+display_cross_check(stats[0].stats[charname].stats.final.Protection,65000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 	            	
@@ -1124,11 +1135,40 @@ const command = async ( message ) => {
 	            	charname="BARRISSOFFEE";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,48000)+"\n";
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,50000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="FIRSTORDERTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="FIRSTORDEREXECUTIONER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="ENFYSNEST";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="SHORETROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			
+        			charname="NIGHTSISTERZOMBIE";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
         			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
@@ -1139,7 +1179,7 @@ const command = async ( message ) => {
         			charname="DAKA";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,38000)+"\n";
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
@@ -1147,10 +1187,72 @@ const command = async ( message ) => {
         			charname="YOUNGCHEWBACCA";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,48000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
+        			charname="GENERALKENOBI";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="OLDBENKENOBI";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="SITHTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="R2D2_LEGENDARY";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="BOSSK";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			charname="ZAALBAR";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+
+        			charname="L3_37";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="BASTILASHAN";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="KYLOREN";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
         			
         			charname="JOLEEBINDO";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
@@ -1160,10 +1262,10 @@ const command = async ( message ) => {
         			embed.fields.push( field );
 
         			
-        			charname="BAZEMALBUS";
+        			charname="GRANDMASTERYODA";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,45000)+"\n";
+        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
@@ -1175,12 +1277,7 @@ const command = async ( message ) => {
         			embed.fields.push( field );
 
         			
-        			charname="R2D2_LEGENDARY";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,35000)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
+        			
         			
 
 	            }
@@ -1197,7 +1294,14 @@ const command = async ( message ) => {
 	            	charname="WAMPA";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3500)+"\n";
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],4000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="EZRABRIDGERS3";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3000)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
@@ -1215,23 +1319,103 @@ const command = async ( message ) => {
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
+        			charname="SNOWTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3800)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="NIGHTSISTERSPIRIT";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],4000)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
         			charname="HANSOLO";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3200)+"\n";
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3300)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         			charname="MISSIONVAO";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3500)+"\n";
+        			field.value += label_physicaldamage+stats[0].stats[charname].stats.final["Physical Damage"]+" (+"+stats[0].stats[charname].stats.mods["Physical Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Physical Damage"],3800)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
         		
 	            	
 	            }
+    			else if(squadName.includes('critavoidance')){
+	            	
+
+	            	let charname="BAZEMALBUS";
+	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    let modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+    				}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
+        			field.value += display_line();
+	            	embed.fields.push( field );
+
+	            	charname="ZAALBAR";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+    				}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="SITHTROOPER";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+    				}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="DARTHTRAYA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+    				}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="KYLORENUNMASKED";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			modscriticalavoidance=0;
+        			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){
+        				modscriticalavoidance=stats[0].stats[charname].unit.mods[1].stat[0][1];
+    				}
+        			field.value += '**Crit Avoidance:** '+(displayNumber(modscriticalavoidance,1,2))+"%"+display_cross_check(displayNumber(modscriticalavoidance,1,2),35)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+	            	
+	            }
+	          
+    			
+    		
+    			
+	            
+	            
         		else if(squadName.includes('specialdamage')){
 	            	
 
@@ -1245,6 +1429,13 @@ const command = async ( message ) => {
 	            	charname="MOTHERTALZIN";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],5800)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="DARTHTRAYA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
         			field.value += label_specialdamage+stats[0].stats[charname].stats.final["Special Damage"]+" (+"+stats[0].stats[charname].stats.mods["Special Damage"]+")"+display_cross_check(stats[0].stats[charname].stats.final["Special Damage"],5500)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
@@ -1255,14 +1446,29 @@ const command = async ( message ) => {
         		else if(squadName.includes('critdamage')){
 	            	
 
-	            	let charname="ASAJVENTRESS";
+	            	let charname="FIRSTORDEREXECUTIONER";
 	            	let displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
         			let field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
                     field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
 	            	field.value += display_line();
 	            	embed.fields.push( field );
+	            	
+	            	charname="ASAJVENTRESS";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+        			field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+                    field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+	            	embed.fields.push( field );
+
 
 	            	charname="WAMPA";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="REYJEDITRAINING";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
         			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
@@ -1275,27 +1481,11 @@ const command = async ( message ) => {
         			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
-
-	            	charname="REYJEDITRAINING";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-
-        			
-	            	charname="HANSOLO";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-
         			
 	            	charname="MISSIONVAO";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),216)+"\n";
+        			field.value += label_critdamage+(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Critical Damage"],100,2),186)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
 
@@ -1317,14 +1507,7 @@ const command = async ( message ) => {
 	            	charname="R2D2_LEGENDARY";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),45)+"\n";
-	            	field.value += display_line();
-        			embed.fields.push( field );
-        			
-        			charname="BB8";
-	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
-	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
-        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),45)+"\n";
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),40)+"\n";
 	            	field.value += display_line();
         			embed.fields.push( field );
         			
@@ -1336,6 +1519,20 @@ const command = async ( message ) => {
         			embed.fields.push( field );
         			
         			charname="HANSOLO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),65)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="MISSIONVAO";
+	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
+	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
+        			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),60)+"\n";
+	            	field.value += display_line();
+        			embed.fields.push( field );
+        			
+        			charname="CARTHONASI";
 	            	displayed_toon = player.characters.filter(u =>u.defId.includes(charname));
 	            	field = displaytoon_bold(displayed_toon[0],unitIndex,charname)
         			field.value += label_critchance+(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2))+"%"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final["Physical Critical Chance"],100,2),65)+"\n";
@@ -1379,7 +1576,8 @@ const display_line = () => {
 const display_cross_check = (value,mark) => {
 	let check_value = Number(value);
 	let check_mark = Number(mark);
-	
+	Report.dev( "BOT:check_value:", check_value )
+	Report.dev( "BOT:check_mark:", check_mark )
 	if(check_value>=check_mark){
 		return  " ✓ ["+check_mark+"]";
 	}
