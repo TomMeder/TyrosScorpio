@@ -457,7 +457,7 @@ const command = async ( message ) => {
                     field.value += label_speed+stats[0].stats[charname].stats.final.Speed+" (+"+stats[0].stats[charname].stats.mods.Speed+")"+display_cross_check(stats[0].stats[charname].stats.final.Speed,210)+"\n";
         			field.value += label_tenacity+(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Tenacity,100,2))+"%) "+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Tenacity,100,2),120)+"\n";
         			field.value += label_health+stats[0].stats[charname].stats.final.Health+" (+"+stats[0].stats[charname].stats.mods.Health+")"+display_cross_check(stats[0].stats[charname].stats.final.Health,40000)+"\n";
-        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),50)+"\n";
+        			field.value += label_armor+(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2))+"% (+"+(displayNumber(stats[0].stats[charname].stats.mods.Armor,100,2))+"%)"+display_cross_check(displayNumber(stats[0].stats[charname].stats.final.Armor,100,2),40)+"\n";
         			
         			let modscriticalavoidance=0;
         			if(stats[0].stats[charname].unit.mods[1].stat[0][0]===54){

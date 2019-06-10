@@ -3,10 +3,10 @@ module.exports = {
     //SWAPI config
 	"swapi":{
       	"mongo":{
-	        "user":"tom",
-	        "pass":"alarm",
-	        "host":"localhost",
-	        "port":27017,
+	        "user":"tom_user",
+	        "pass":"bYIFhr0xQctyRSaxnZ9p",
+	        "host":"192.168.1.35",
+	        "port":32775,
 	        "auth":"?authSource=admin",
 	        "db":"swapi"
       	},
