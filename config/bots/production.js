@@ -1,37 +1,14 @@
-if (process.env.DATABASE_SERVICE_NAME) {
-    var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase();
-    mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'];
-    mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'];
-    mongoDatabase = process.env[mongoServiceName + '_DATABASE'];
-    mongoPassword = process.env[mongoServiceName + '_PASSWORD'];
-	mongoAdminPassword = process.env[mongoServiceName + '_ADMIN_PASSWORD'];
-    mongoUser = process.env[mongoServiceName + '_USER'];
-	
-	
-	console.log('Connected to MongoDB at: %s', mongoDatabase);
-}
-else{
-	mongoServiceName = "";
-    mongoHost = "";
-    mongoPort = "";
-    mongoDatabase = "";
-    mongoPassword = "";
-	mongoAdminPassword = "";
-    mongoUser = "";
-}
-
-
 module.exports = {
 	
     //SWAPI config
 	"swapi":{
       	"mongo":{
-	        "user":mongoUser,
-	        "pass":mongoPassword,
-	        "host":mongoHost,
-	        "port":mongoPort,
-	        "auth":"?authSource="+mongoDatabase,
-	        "db":mongoDatabase
+	       "user":"tom_user",
+	        "pass":"bYIFhr0xQctyRSaxnZ9p",
+	        "host":"192.168.1.35",
+	        "port":32775,
+	        "auth":"?authSource=admin",
+	        "db":"swapi"
       	},
       	"api":{
 	        "username":"TyroVest",
@@ -67,7 +44,7 @@ module.exports = {
 	            "pca":"Player-character arena",
 	            "psa":"Player-ship arena",
 	            "z":"Zeta recommendations",
-				 "t":"Toms recommendations",
+				"t":"Toms recommendations",
 	            "ti":"Team Instinct recommendations",
 	            "counter":"Counter Teams",
 	            "scm":"Check Ship Crew Mods"
