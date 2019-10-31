@@ -12,6 +12,6 @@
   "dependencies": {
     "api-swgoh-help": "^3.3.0",
     "discord.js": "^11.4.2",
-    "mongoose": "^5.3.15"
+    "mongoose": "^5.7.5"
   }
 }
